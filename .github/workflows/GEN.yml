@@ -20,12 +20,12 @@ jobs:
           ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
       - name: Prepare App
         run: |
-          mkdir -p ${{ github.workspace }}/apk/
+          mkdir -p ${{ github.workspace }}/apks/
           for file in `find ~ -name "*.apk" -print`; do
-            mv "$file" ${{ github.workspace }}/apk/
+            mv "$file" ${{ github.workspace }}/apks/
           done
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v3
         with:
           name: box
-          path: ${{ github.workspace }}/apk/*
+          path: ${{ github.workspace }}/apks/*
